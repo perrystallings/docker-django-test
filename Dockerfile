@@ -20,7 +20,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     memcached \
     wget \
     postgresql \
-    postgresql-contrib && \
+    postgresql-contrib \
+    sudo && \
     rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp && \
