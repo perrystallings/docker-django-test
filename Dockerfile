@@ -1,39 +1,11 @@
-FROM ubuntu:16.04
+FROM perrystallings/ubuntu-python3.5.2:latest
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3.5 \
-    nginx \
-    supervisor \
-    libmysqlclient-dev \
-    python3.5-dev \
-    git \
-    python-virtualenv \
-    libjemalloc1 \
-    libjemalloc-dev \
-    gcc \
-    make \
-    libssl-dev \
-    libffi-dev \
-    libxslt-dev \
-    libxml2-dev \
-    libpq-dev \
     memcached \
-    wget \
     postgresql \
-    postgresql-contrib \
-    sudo && \
+    postgresql-contrib && \
     rm -rf /var/lib/apt/lists/*
 
-RUN cd /tmp && \
-    wget http://download.redis.io/redis-stable.tar.gz && \
-    tar xvzf redis-stable.tar.gz && \
-    cd redis-stable && \
-    make && \
-    cp src/redis-cli /usr/local/bin/ && \
-    cp src/redis-server /usr/local/bin/ && \
-    chmod 755 /usr/local/bin/redis-cli  && \
-    chmod 755 /usr/local/bin/redis-server && \
-    mkdir /etc/redis && \
+RUN mkdir /etc/redis && \
     mkdir /var/redis && \
-    mkdir /var/log/redis && \
-    make clean
+    mkdir /var/log/redis
